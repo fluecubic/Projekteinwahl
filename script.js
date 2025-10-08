@@ -9,6 +9,7 @@ import { getDoc, addDoc, doc, getFirestore, getDocs, getDocFromCache, collection
 let Vorname;
 let Nachname;
 let Name;
+let Projekt;
 
 
 const firebaseConfig = {
@@ -33,19 +34,34 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
      localStorage.setItem("Name", Name)
      localStorage.setItem("Vorname", Vorname)
      localStorage.setItem("Nachname", Nachname)
-
-     const q = query(collection(db, "Users")); 
-
-     const querySnapshot = await getDocs(q);
-
-    
+     
+     const AdddocRef = await addDoc(collection(db, "Users"), {
+     Name: Name,
+     Vorname: Vorname,
+     Nachname: Nachname
+     })
+ 
      UI("choose")
 })   
     } else {
      Name = localStorage.getItem("Name");
      Vorname = localStorage.getItem("Vorname");
      Nachname = localStorage.getItem("Nachname");
-     UI("choose")
+
+     const q = query(collection(db, "Users")); 
+     const querySnapshot = await getDocs(q);
+
+    for (const doc of querySnapshot.docs) {
+      if (doc.data().Name == Name) {
+        if (doc.data().Projekt) {
+            Projekt = doc.data().Projekt
+            UI("done")
+        } else {
+            UI("choose")
+        }
+      }  
+    }
+     
     }
 
     function UI(status) {
@@ -70,4 +86,13 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
         }
     }
 
+
+   async function loadProjects() {
+     const q = query(collection(db, "Users")); 
+     const querySnapshot = await getDocs(q);
+
+    for (const doc of querySnapshot) {
+
+     }
+    }
     
