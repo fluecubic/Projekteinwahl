@@ -28,3 +28,25 @@ h1{
 #persons{
     margin-left: 500px;
 }
+
+#projects{
+    overflow-y: auto;
+    
+}
+
+.persons{
+    position: absolute;
+    left: 650px; 
+    top: 0;     
+    margin-left: 0; 
+}
+
+.projectName{
+  margin-left: 100px;  
+}
+
+.project{
+   display: flex;
+   flex-direction: row; 
+   position: relative;
+}

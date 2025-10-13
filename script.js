@@ -24,6 +24,11 @@ const firebaseConfig = {
 
 const db = getFirestore(initializeApp(firebaseConfig));
 
+
+const q = query(collection(db, "User")); 
+const querySnapshot = await getDocs(q);
+
+
 if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
     UI("logedout")
      document.getElementById("go").addEventListener("click", async function () {
@@ -35,11 +40,21 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
      localStorage.setItem("Vorname", Vorname)
      localStorage.setItem("Nachname", Nachname)
      
-     const AdddocRef = await addDoc(collection(db, "Users"), {
+     let found = false;
+     for (const doc of querySnapshot.docs) {
+      if (doc.data().Name == Name) {
+       found = true
+      }  
+    }
+    
+    if (!found) {
+      const AdddocRef = await addDoc(collection(db, "User"), {
      Name: Name,
      Vorname: Vorname,
      Nachname: Nachname
      })
+    }
+     
  
      UI("choose")
 })   
@@ -48,10 +63,9 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
      Vorname = localStorage.getItem("Vorname");
      Nachname = localStorage.getItem("Nachname");
 
-     const q = query(collection(db, "Users")); 
-     const querySnapshot = await getDocs(q);
 
     for (const doc of querySnapshot.docs) {
+      
       if (doc.data().Name == Name) {
         if (doc.data().Projekt) {
             Projekt = doc.data().Projekt
@@ -59,16 +73,20 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
         } else {
             UI("choose")
         }
-      }  
+      }  else {
+      }
     }
      
     }
 
     function UI(status) {
+
+      console.log(status)
         if (status == "logedout") {
             document.getElementById("name").style.display = "block"
             document.getElementById("surname").style.display = "block"
             document.getElementById("go").style.display = "block"
+            document.getElementById("go").innerHTML = "Weiter"
             document.getElementsByClassName("info")[0].style.display = "block"
             document.getElementsByClassName("info")[1].style.display = "block"
             document.getElementsByClassName("info")[2].style.display = "block"
@@ -79,20 +97,36 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
             document.getElementById("name").style.display = "none"
             document.getElementById("surname").style.display = "none"
             document.getElementById("go").style.display = "block"
+            document.getElementById("go").innerHTML = "Fertig"
             document.getElementsByClassName("info")[0].innerHTML = "Hallo, " + Name + ". Wähle ein Projekt"
             document.getElementsByClassName("info")[1].style.display = "none"
             document.getElementsByClassName("info")[2].style.display = "none"
             document.getElementById("projects").style.display = "block"
         }
+
+        if (status == "done") {
+          document.getElementById("name").style.display = "none"
+          document.getElementById("surname").style.display = "none"
+          document.getElementById("go").style.display = "block"
+          document.getElementById("go").innerHTML = "Ändern"
+          document.getElementsByClassName("info")[0].innerHTML = "Hallo, " + Name + ". Du bist im Projekt " + Projekt;
+          document.getElementsByClassName("info")[1].style.display = "none"
+          document.getElementsByClassName("info")[2].style.display = "none"
+
+        }
     }
 
 
    async function loadProjects() {
-     const q = query(collection(db, "Users")); 
+     const q = query(collection(db, "Projects")); 
      const querySnapshot = await getDocs(q);
 
-    for (const doc of querySnapshot) {
-
+     let html = "";
+    for (const doc of querySnapshot.docs) {
+        html += "<div class='project'><p class='projectName'>" + doc.data().Name + "</p><p class='persons'>" + doc.data().Users.length + "/" + doc.data().MaxUsers + "</p></div>"
      }
+          document.getElementById("projects").innerHTML = html
     }
-    
+
+    loadProjects()
+  
