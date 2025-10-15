@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";  
-import { getDoc, addDoc, doc, getFirestore, getDocs, getDocFromCache, collection, updateDoc, Timestamp, onSnapshot, query, orderBy, serverTimestamp, deleteDoc, arrayUnion   } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getDoc, addDoc, doc, getFirestore, getDocs, getDocFromCache, collection, updateDoc, Timestamp, onSnapshot, query, orderBy, serverTimestamp, deleteDoc, arrayUnion, arrayRemove   } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 
 
@@ -10,7 +10,7 @@ let Vorname;
 let Nachname;
 let Name;
 let Projekt;
-
+let Status = "logedout"
 
 const firebaseConfig = {
   apiKey: "AIzaSyC0Xp9IRIk9FzDrIEDIlVUUbW4nI31ebb4",
@@ -28,10 +28,7 @@ const db = getFirestore(initializeApp(firebaseConfig));
 const q = query(collection(db, "User")); 
 const querySnapshot = await getDocs(q);
 
-
-if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
-    UI("logedout")
-     document.getElementById("go").addEventListener("click", async function () {
+ async function login() {
      Vorname = document.getElementById("name").value;
      Nachname = document.getElementById("surname").value;
      Name = Vorname + " " + Nachname;
@@ -57,7 +54,27 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
      
  
      UI("choose")
-})   
+}   
+
+
+document.getElementById("go").addEventListener("click", function () {
+      if (Status == "logedout") {
+        login()
+      } else if(Status == "choose"){
+        setProject()
+      } else if(Status == "done"){
+        reset()
+      }
+     })
+
+
+
+if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
+    UI("logedout")
+
+
+
+    
     } else {
      Name = localStorage.getItem("Name");
      Vorname = localStorage.getItem("Vorname");
@@ -78,10 +95,11 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
     }
      
     }
-
+  
     function UI(status) {
 
       console.log(status)
+      Status = status;
         if (status == "logedout") {
             document.getElementById("name").style.display = "block"
             document.getElementById("surname").style.display = "block"
@@ -90,6 +108,8 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
             document.getElementsByClassName("info")[0].style.display = "block"
             document.getElementsByClassName("info")[1].style.display = "block"
             document.getElementsByClassName("info")[2].style.display = "block"
+            document.getElementsByClassName("zeileninfo")[0].style.display = "none"
+            document.getElementsByClassName("zeileninfo")[1].style.display = "none"
             document.getElementById("projects").style.display = "none"
         }
 
@@ -102,6 +122,8 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
             document.getElementsByClassName("info")[1].style.display = "none"
             document.getElementsByClassName("info")[2].style.display = "none"
             document.getElementById("projects").style.display = "block"
+            document.getElementsByClassName("zeileninfo")[0].style.display = "block"
+            document.getElementsByClassName("zeileninfo")[1].style.display = "block"
         }
 
         if (status == "done") {
@@ -112,6 +134,9 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
           document.getElementsByClassName("info")[0].innerHTML = "Hallo, " + Name + ". Du bist im Projekt " + Projekt;
           document.getElementsByClassName("info")[1].style.display = "none"
           document.getElementsByClassName("info")[2].style.display = "none"
+          document.getElementsByClassName("zeileninfo")[0].style.display = "none"
+          document.getElementsByClassName("zeileninfo")[1].style.display = "none"
+          document.getElementById("projects").style.display = "none"
 
         }
     }
@@ -123,10 +148,82 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
 
      let html = "";
     for (const doc of querySnapshot.docs) {
-        html += "<div class='project'><p class='projectName'>" + doc.data().Name + "</p><p class='persons'>" + doc.data().Users.length + "/" + doc.data().MaxUsers + "</p></div>"
+        html += "<div class='project' id='" + doc.data().Name +"'><p class='projectName'>" + doc.data().Name + "</p><p class='persons'>" + doc.data().Users.length + "/" + doc.data().MaxUsers + "</p></div>"
      }
           document.getElementById("projects").innerHTML = html
     }
 
     loadProjects()
+    
+
+   async function setProject() {
+     
+     const querySnapshot = await getDocs(query(collection(db, "Projects")));
+     const QuerySnapshot = await getDocs(query(collection(db, "User")));
+     console.log("Sending")
+
+    for (const Doc of querySnapshot.docs) {
+         if(Doc.data().Name == Projekt ){
+          if (Doc.data().Users.length <= Doc.data().MaxUsers) {
+            await updateDoc(doc(db, "Projects", Doc.id), { Users: arrayUnion(Name) }
+        )
+          } else {return}
+          
+         }
+    }
+
+    for (const Doc of QuerySnapshot.docs) {
+         if(Doc.data().Name == Name){
+          await updateDoc(
+        doc(db, "User", Doc.id), 
+        {Projekt: Projekt }
+        )
+         }
+    }
+      
+    UI("done")
+    }
   
+  
+
+
+  document.addEventListener("click", async function (e) {
+ if (e.target.classList[0] == "project") {
+    console.log(e.target.id)
+    let Id = e.target.id;
+    Projekt = Id;
+    for (const p of document.getElementsByClassName("project")) {
+      p.style.backgroundColor = "rgba(0, 0, 0, 0)"
+    }
+
+    document.getElementById(Id).style.backgroundColor = "blue"
+}})
+
+async function reset() {
+   const querySnapshot = await getDocs(query(collection(db, "Projects")));
+     const QuerySnapshot = await getDocs(query(collection(db, "User")));
+     console.log("Deleting")
+
+    for (const Doc of querySnapshot.docs) {
+         if(Doc.data().Name == Projekt ){
+          await updateDoc(
+        doc(db, "Projects", Doc.id), 
+        {Users: arrayRemove(Name) }
+        )
+          
+         }
+    }
+
+    for (const Doc of QuerySnapshot.docs) {
+         if(Doc.data().Name == Name){
+          await updateDoc(
+        doc(db, "User", Doc.id), 
+        {Projekt: "" }
+        )
+         }
+    }
+
+    UI("choose")
+}
+    
+ 
