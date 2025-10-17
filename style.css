@@ -8,8 +8,16 @@ body{
     padding:20px ;
 }
 
+
+@font-face {
+    font-family: "font";
+    src: url("https://fonts.gstatic.com/s/telex/v18/ieVw2Y1fKWmIO-fUDVs.woff2");
+}
+
+
 html{
     background-color: rgb(255, 255, 255);
+    font-family: "font";
 }
 
 h1{
