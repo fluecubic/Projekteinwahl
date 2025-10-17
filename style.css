@@ -18,6 +18,11 @@ body{
 html{
     background-color: rgb(255, 255, 255);
     font-family: "font";
+    
+}
+
+body{
+    background-color: rgb(50, 130, 205);
 }
 
 h1{
@@ -57,4 +62,11 @@ h1{
    display: flex;
    flex-direction: row; 
    position: relative;
+}
+
+button{
+    background-color: rgb(216, 58, 58);
+    color: white;
+    margin-top: 70px;
+    margin-left: 300px;
 }
