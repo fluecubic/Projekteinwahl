@@ -64,6 +64,7 @@ document.getElementById("go").addEventListener("click", function () {
         setProject()
       } else if(Status == "done"){
         reset()
+        
       }
      })
 
@@ -124,6 +125,7 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
             document.getElementById("projects").style.display = "block"
             document.getElementsByClassName("zeileninfo")[0].style.display = "block"
             document.getElementsByClassName("zeileninfo")[1].style.display = "block"
+            loadProjects()
         }
 
         if (status == "done") {
@@ -225,5 +227,11 @@ async function reset() {
 
     UI("choose")
 }
+
+const Q = query(collection(db, "Projects")); 
+
+ onSnapshot(Q, async (querySnapshot) => {
+  loadProjects()
+ })
     
  
