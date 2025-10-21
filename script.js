@@ -10,6 +10,7 @@ let Vorname;
 let Nachname;
 let Name;
 let Projekt;
+ let Klasse;
 let Status = "logedout"
 
 const firebaseConfig = {
@@ -32,6 +33,8 @@ const querySnapshot = await getDocs(q);
      Vorname = document.getElementById("name").value;
      Nachname = document.getElementById("surname").value;
      Name = Vorname + " " + Nachname;
+     Klasse  = document.getElementById("class").value;
+
 
      localStorage.setItem("Name", Name)
      localStorage.setItem("Vorname", Vorname)
@@ -41,14 +44,17 @@ const querySnapshot = await getDocs(q);
      for (const doc of querySnapshot.docs) {
       if (doc.data().Name == Name) {
        found = true
+       Klasse = doc.data().Klasse
       }  
     }
+
     
     if (!found) {
       const AdddocRef = await addDoc(collection(db, "User"), {
      Name: Name,
      Vorname: Vorname,
-     Nachname: Nachname
+     Nachname: Nachname,
+     Klasse: Klasse
      })
     }
      
@@ -82,9 +88,11 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
      Nachname = localStorage.getItem("Nachname");
 
 
+
     for (const doc of querySnapshot.docs) {
       
       if (doc.data().Name == Name) {
+        Klasse = doc.data().Klasse;
         if (doc.data().Projekt) {
             Projekt = doc.data().Projekt
             UI("done")
@@ -112,6 +120,7 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
             document.getElementsByClassName("zeileninfo")[0].style.display = "none"
             document.getElementsByClassName("zeileninfo")[1].style.display = "none"
             document.getElementById("projects").style.display = "none"
+            document.getElementById("class").style.display = "block"
         }
 
         if (status == "choose") {
@@ -125,6 +134,7 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
             document.getElementById("projects").style.display = "block"
             document.getElementsByClassName("zeileninfo")[0].style.display = "block"
             document.getElementsByClassName("zeileninfo")[1].style.display = "block"
+            document.getElementById("class").style.display = "none"
             loadProjects()
         }
 
@@ -139,6 +149,7 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
           document.getElementsByClassName("zeileninfo")[0].style.display = "none"
           document.getElementsByClassName("zeileninfo")[1].style.display = "none"
           document.getElementById("projects").style.display = "none"
+          document.getElementById("class").style.display = "none"
 
         }
     }
@@ -147,15 +158,20 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
    async function loadProjects() {
      const q = query(collection(db, "Projects")); 
      const querySnapshot = await getDocs(q);
+     console.log("loading...")
 
      let html = "";
     for (const doc of querySnapshot.docs) {
+      if (doc.data().Users.length < doc.data().MaxUsers ) {
+      if (doc.data().minClass <= Number(Klasse.charAt(0)) || Klasse.charAt(0) == "1") { 
+
         html += "<div class='project' id='" + doc.data().Name +"'><p class='projectName'>" + doc.data().Name + "</p><p class='persons'>" + doc.data().Users.length + "/" + doc.data().MaxUsers + "</p></div>"
+         }}
      }
           document.getElementById("projects").innerHTML = html
     }
 
-    loadProjects()
+   
     
 
    async function setProject() {
@@ -166,13 +182,12 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
 
     for (const Doc of querySnapshot.docs) {
          if(Doc.data().Name == Projekt ){
-          if (Doc.data().Users.length <= Doc.data().MaxUsers) {
-            await updateDoc(doc(db, "Projects", Doc.id), { Users: arrayUnion(Name) }
-        )
-          } else {return}
+
+           await updateDoc(doc(db, "Projects", Doc.id), { Users: arrayUnion(Name) })
+          } 
           
          }
-    }
+   
 
     for (const Doc of QuerySnapshot.docs) {
          if(Doc.data().Name == Name){

@@ -1,0 +1,46 @@
+body{
+    width: 1000px;
+    height: 600px;
+    background-color: rgb(90, 90, 90);
+    border-radius: 20px;
+    margin-left: 460px;
+    margin-top: 200px;
+    padding:20px ;
+}
+
+
+@font-face {
+    font-family: "font";
+    src: url("https://fonts.gstatic.com/s/telex/v18/ieVw2Y1fKWmIO-fUDVs.woff2");
+}
+
+
+html{
+    background-color: rgb(255, 255, 255);
+    font-family: "font";
+    
+}
+
+body{
+    background-color: rgb(50, 130, 205);
+}
+
+
+
+button{
+    background-color: rgb(216, 58, 58);
+    color: white;
+    margin-top: 70px;
+    margin-left: 300px;
+}
+
+td{
+    border: 0px solid black;
+    margin: 0px;
+}
+
+
+table{
+border: 2px solid black;
+margin: 100px
+}
