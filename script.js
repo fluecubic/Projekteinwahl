@@ -54,7 +54,8 @@ const querySnapshot = await getDocs(q);
      Name: Name,
      Vorname: Vorname,
      Nachname: Nachname,
-     Klasse: Klasse
+     Klasse: Klasse,
+     Projekt: ""
      })
     }
      
@@ -93,7 +94,7 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
       
       if (doc.data().Name == Name) {
         Klasse = doc.data().Klasse;
-        if (doc.data().Projekt) {
+        if (doc.data().Projekt && doc.data().Projekt != "") {
             Projekt = doc.data().Projekt
             UI("done")
         } else {
