@@ -12,14 +12,32 @@ const firebaseConfig = {
 };
 
 const db = getFirestore(initializeApp(firebaseConfig));
-
+let a = document.getElementById("a");
+let Updatetime = new Date().toLocaleDateString("de-DE") + " " + new Date().toLocaleTimeString("de-DE")
 const userSnapshot = await getDocs(query(collection(db, "User"), orderBy("Klasse", "desc")));
 const projectSnapshot = await getDocs(query(collection(db, "Projects"), orderBy("Name", "desc")));
+let fileString = "";
 
+
+fileString = "Klasse;Vornam;Name;Projekt\n"
 userSnapshot.forEach(element => {
    document.getElementById("Users").innerHTML += "<tr><td>" + element.data().Klasse + "</td><td>" + element.data().Nachname + "</td><td>" +  element.data().Vorname + "</td><td>" + element.data().Projekt + "</td></tr>"
+   fileString +=  element.data().Klasse + ";" + element.data().Nachname + ";" +  element.data().Vorname + ";" + element.data().Projekt + "\n"
+
 });
+fileString += "\n\n\nBezeichnung;Teilnehmer;Anzahl\n"
 
 projectSnapshot.forEach(element => {
    document.getElementById("Projects").innerHTML += "<tr><td>" + element.data().Name + "</td><td>" + element.data().Users + "</td><td>" +  element.data().Users.length + "/" + element.data().MaxUsers + "</td></tr>"
+   fileString += element.data().Name + ";" + element.data().Users + ";" +  element.data().Users.length + "/" + element.data().MaxUsers + "\n"
+
 });
+
+
+let file = new Blob([fileString], { type: "text/csv" });
+
+
+
+a.href = URL.createObjectURL(file);
+a.download = "Ergebnisse("+ Updatetime +").csv"
+
