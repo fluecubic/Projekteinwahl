@@ -18,13 +18,53 @@ const userSnapshot = await getDocs(query(collection(db, "User"), orderBy("Klasse
 const projectSnapshot = await getDocs(query(collection(db, "Projects"), orderBy("Name", "desc")));
 const adminSnapshot = await getDoc(doc(db, "admin", "admin"))
 
+
+
+function ui(status) {
+  if (status == "logedin") {
+    document.getElementById("go").style.display = "none"
+    document.getElementById("passwort").style.display = "none"
+    document.getElementById("Projectname").style.display = "block"
+    document.getElementById("MaxUsers").style.display = "block"
+    document.getElementById("Class").style.display = "block"
+    document.getElementById("Go").style.display = "block"
+    document.getElementsByTagName("info")[0].innerHTML = ""
+  }
+
+  if (status == "logedout") {
+    document.getElementById("go").style.display = "block"
+    document.getElementById("passwort").style.display = "block"
+    document.getElementById("Projectname").style.display = "none"
+    document.getElementById("MaxUsers").style.display = "none"
+    document.getElementById("Class").style.display = "none"
+    document.getElementById("Go").style.display = "none"
+  }
+}
+
+ui("logedout")
+
 function login() {
    if (document.getElementById("passwort").value == adminSnapshot.data().Key) {
-    
+    ui("logedin")
+    localStorage.setItem("Key",  document.getElementById("passwort").value)
    } else {
     document.getElementsByTagName("info")[0].innerHTML = "Schlüssel Falsch"
    } 
 }
 
+if (localStorage.getItem("Key") == adminSnapshot.data().Key) {
+  ui("logedin")
+}
+
 
 document.getElementById("go").addEventListener("click", login)
+document.getElementById("Go").addEventListener("click", addProject)
+
+async function addProject() {
+  const AdddocRef = await addDoc(collection(db, "Projects"), {
+       Name: document.getElementById("Projectname").value,
+       MaxUsers: Number(document.getElementById("MaxUsers").value),
+       minClass: Number(document.getElementById("Class").value),
+       Users: []
+       })
+}
