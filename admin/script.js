@@ -29,6 +29,9 @@ function ui(status) {
     document.getElementById("Class").style.display = "block"
     document.getElementById("Go").style.display = "block"
     document.getElementsByTagName("info")[0].innerHTML = ""
+    document.getElementById("Users").style.display = "block"
+    document.getElementById("Name").style.display = "block"
+    document.getElementById("add").style.display = "block"
   }
 
   if (status == "logedout") {
@@ -38,6 +41,9 @@ function ui(status) {
     document.getElementById("MaxUsers").style.display = "none"
     document.getElementById("Class").style.display = "none"
     document.getElementById("Go").style.display = "none"
+    document.getElementById("Users").style.display = "none"
+    document.getElementById("Name").style.display = "none"
+    document.getElementById("add").style.display = "none"
   }
 }
 
@@ -61,10 +67,31 @@ document.getElementById("go").addEventListener("click", login)
 document.getElementById("Go").addEventListener("click", addProject)
 
 async function addProject() {
-  const AdddocRef = await addDoc(collection(db, "Projects"), {
+  if (localStorage.getItem("Key") == adminSnapshot.data().Key){
+    const AdddocRef = await addDoc(collection(db, "Projects"), {
        Name: document.getElementById("Projectname").value,
        MaxUsers: Number(document.getElementById("MaxUsers").value),
        minClass: Number(document.getElementById("Class").value),
        Users: []
        })
+  }
+  
 }
+
+
+async function addUser() {
+  if (localStorage.getItem("Key") == adminSnapshot.data().Key) {
+    
+  for (const doc of userSnapshot) {
+    if (doc.data().Name == document.getElementById("Name").value) {
+      await updateDoc(doc(db, "User", doc.id), { Projekt: document.getElementById("Users").value})
+    }
+  }
+    
+ 
+}
+}
+
+projectSnapshot.forEach(doc => {
+  document.getElementById("Users").innerHTML += "<option value='" + doc.data().Name + "'>" + doc.data().Name + "</option>"
+});
