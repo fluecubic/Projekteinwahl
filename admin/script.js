@@ -21,6 +21,7 @@ const adminSnapshot = await getDoc(doc(db, "admin", "admin"))
 
 
 function ui(status) {
+  console.log(status)
   if (status == "logedin") {
     document.getElementById("go").style.display = "none"
     document.getElementById("passwort").style.display = "none"
@@ -32,6 +33,7 @@ function ui(status) {
     document.getElementById("Users").style.display = "block"
     document.getElementById("Name").style.display = "block"
     document.getElementById("add").style.display = "block"
+    document.getElementsByTagName("hr")[0].style.display = "block"
   }
 
   if (status == "logedout") {
@@ -44,6 +46,7 @@ function ui(status) {
     document.getElementById("Users").style.display = "none"
     document.getElementById("Name").style.display = "none"
     document.getElementById("add").style.display = "none"
+    document.getElementsByTagName("hr")[0].style.display = "none"
   }
 }
 
