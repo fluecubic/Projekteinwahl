@@ -247,7 +247,10 @@ async function reset() {
 const Q = query(collection(db, "Projects")); 
 
  onSnapshot(Q, async (querySnapshot) => {
-  loadProjects()
+  if (Status != "logedout") {
+    loadProjects()
+  }
+  
  })
     
  
