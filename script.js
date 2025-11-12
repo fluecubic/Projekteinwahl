@@ -136,6 +136,7 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
             document.getElementsByClassName("zeileninfo")[0].style.display = "block"
             document.getElementsByClassName("zeileninfo")[1].style.display = "block"
             document.getElementById("class").style.display = "none"
+            document.getElementsByClassName("info")[0].style.marginLeft = "300px"
             loadProjects()
         }
 
@@ -151,7 +152,7 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
           document.getElementsByClassName("zeileninfo")[1].style.display = "none"
           document.getElementById("projects").style.display = "none"
           document.getElementById("class").style.display = "none"
-
+          document.getElementsByClassName("info")[0].style.marginLeft = "250px"
         }
     }
 
@@ -214,7 +215,7 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
       p.style.backgroundColor = "rgba(0, 0, 0, 0)"
     }
 
-    document.getElementById(Id).style.backgroundColor = "blue"
+    document.getElementById(Id).style.backgroundColor = "rgb(216, 58, 58)"
 }})
 
 async function reset() {

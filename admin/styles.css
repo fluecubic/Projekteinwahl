@@ -1,3 +1,83 @@
 info{
     color: red;
 }
+
+#body{
+    width: 1200px;
+    height: 700px;
+    background-color: rgb(50, 130, 205);
+    border-radius: 20px;
+    margin-left: 340px;
+    margin-top: 90px;
+    padding:20px ;
+    overflow-y: scroll;
+}
+
+
+@font-face {
+    font-family: "font";
+    src: url("https://fonts.gstatic.com/s/telex/v18/ieVw2Y1fKWmIO-fUDVs.woff2");
+}
+
+
+html{
+    background-color: rgb(255, 255, 255);
+    font-family: "font";
+    
+}
+
+
+
+button{
+    background-color: rgb(216, 58, 58);
+    color: white;
+    width: 90px;
+    height: 45px;
+    border-radius: 10px;
+    font-size: 15px;
+    z-index: 0;
+}
+
+input{
+   background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    margin-top: 0px;
+    margin-left: 400px;
+    width: 300px;
+    height: 25px;
+    border-radius: 5px;
+    font-size: 15px;  
+}
+
+.info{
+ background-color: rgba(255, 255, 255, 0);
+    color: black;
+    margin-top: 0px;
+    margin-left: 500px;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-bottom: 5px;  
+}
+
+h1, .h1{
+    margin-left: 550px;
+    font-size: 30px;
+    width: 650px;
+    height: 40px;
+}
+
+select{
+   background-color: rgb(255, 255, 255);
+    color: black;
+    margin-top: 15px;
+    margin-left: 450px;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-bottom: 5px;   
+}
+
+

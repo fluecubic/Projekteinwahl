@@ -6,6 +6,7 @@
     margin-left: 340px;
     margin-top: 90px;
     padding:20px ;
+    overflow-y: scroll;
 }
 
 
@@ -62,8 +63,8 @@ html{
 button{
     background-color: rgb(216, 58, 58);
     color: white;
-    top: 700px;
-    left: 850px;
+    top: 740px;
+    left: 1450px;
     width: 90px;
     height: 45px;
     border-radius: 10px;
@@ -95,10 +96,10 @@ input{
     margin-bottom: 5px;  
 }
 
-h1{
+h1, .h1{
     margin-left: 550px;
-    font-size: 35px;
-    width: 300px;
+    font-size: 30px;
+    width: 650px;
     height: 40px;
 }
 
@@ -112,4 +113,8 @@ select{
     border-radius: 5px;
     font-size: 20px;
     margin-bottom: 5px;   
+}
+
+.project{
+    border-radius: 20px;
 }
