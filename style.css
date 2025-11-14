@@ -28,6 +28,7 @@ html{
 #zeile{
     display: flex;
     flex-direction: row;
+    
 }
 
 .zeileninfo{
@@ -58,6 +59,7 @@ html{
    display: flex;
    flex-direction: row; 
    position: relative;
+    width: 850px; 
 }
 
 button{
@@ -119,5 +121,6 @@ select{
     border-radius: 20px;
 
 }
+
 
 
