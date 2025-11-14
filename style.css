@@ -65,8 +65,8 @@ html{
 button{
     background-color: rgb(216, 58, 58);
     color: white;
-    margin-top: 75vh;
-    margin-left: 75vw;
+    margin-top: 25px;
+    margin-left: 1450px;
     width: 90px;
     height: 45px;
     border-radius: 10px;
@@ -121,6 +121,7 @@ select{
     border-radius: 20px;
 
 }
+
 
 
 
