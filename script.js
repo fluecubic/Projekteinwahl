@@ -181,7 +181,7 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
      const querySnapshot = await getDocs(query(collection(db, "Projects")));
      const QuerySnapshot = await getDocs(query(collection(db, "User")));
      console.log("Sending")
-
+if(Projekt){
     for (const Doc of querySnapshot.docs) {
          if(Doc.data().Name == Projekt ){
 
@@ -201,6 +201,7 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
     }
 
     UI("done")
+}
     }
   
   
@@ -256,3 +257,4 @@ const Q = query(collection(db, "Projects"));
     
 
  
+
