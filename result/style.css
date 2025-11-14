@@ -31,7 +31,7 @@ html{
 a{
     background-color: rgb(216, 58, 58) ;
     margin-top: 25px;
-    margin-left: 1450px;
+    margin-left: 1090px;
     border-radius: 10px;
     font-size: 15px;
     position: block;
@@ -78,5 +78,6 @@ table{
 .tableTopic{
  background-color: rgb(180, 180, 180) ;
 }
+
 
 
