@@ -63,8 +63,8 @@ html{
 button{
     background-color: rgb(216, 58, 58);
     color: white;
-    top: 740px;
-    left: 1450px;
+    top: 65vh;
+    left: 80vw;
     width: 90px;
     height: 45px;
     border-radius: 10px;
@@ -117,4 +117,5 @@ select{
 
 .project{
     border-radius: 20px;
+
 }
