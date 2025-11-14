@@ -30,12 +30,11 @@ html{
 
 a{
     background-color: rgb(216, 58, 58) ;
-    top: 740px;
-    left: 1450px;
+    margin-top: 25px;
+    margin-left: 1450px;
     border-radius: 10px;
     font-size: 15px;
-    position: fixed;
-    z-index: 0;
+    position: block;
     padding: 10px;
     text-decoration: none;
     color: white;
@@ -79,4 +78,5 @@ table{
 .tableTopic{
  background-color: rgb(180, 180, 180) ;
 }
+
 
