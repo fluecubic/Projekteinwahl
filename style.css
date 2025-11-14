@@ -65,13 +65,13 @@ html{
 button{
     background-color: rgb(216, 58, 58);
     color: white;
-    top: 75vh;
-    left: 75vw;
+    margin-top: 75vh;
+    margin-left: 75vw;
     width: 90px;
     height: 45px;
     border-radius: 10px;
     font-size: 15px;
-    position: fixed;
+    position: block;
     z-index: 0;
 }
 
@@ -121,6 +121,7 @@ select{
     border-radius: 20px;
 
 }
+
 
 
 
