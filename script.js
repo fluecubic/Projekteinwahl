@@ -199,7 +199,7 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
         )
          }
     }
-      
+
     UI("done")
     }
   
@@ -241,7 +241,7 @@ async function reset() {
         )
          }
     }
-
+    Projekt = null;
     UI("choose")
 }
 
@@ -254,4 +254,5 @@ const Q = query(collection(db, "Projects"));
   
  })
     
+
  
