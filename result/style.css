@@ -6,12 +6,15 @@
     margin-left: 340px;
     margin-top: 90px;
     padding:20px ;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
     overflow-y: auto;
 }
 
+
+#Tables{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
 
 @font-face {
     font-family: "font";
