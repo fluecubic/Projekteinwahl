@@ -10,8 +10,10 @@ let Vorname;
 let Nachname;
 let Name;
 let Projekt;
- let Klasse;
+let Klasse;
 let Status = "logedout"
+let connectstring = "git.fluecubic.admin.io/projekteinwahl/index.html".slice(14,19)
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyC0Xp9IRIk9FzDrIEDIlVUUbW4nI31ebb4",
@@ -28,6 +30,7 @@ const db = getFirestore(initializeApp(firebaseConfig));
 
 const q = query(collection(db, "User")); 
 const querySnapshot = await getDocs(q);
+const timeSnapshot = await getDoc(doc(db, connectstring, connectstring))
 
  async function login() {
      Vorname = document.getElementById("name").value;
@@ -122,6 +125,8 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
             document.getElementsByClassName("zeileninfo")[1].style.display = "none"
             document.getElementById("projects").style.display = "none"
             document.getElementById("class").style.display = "block"
+            document.getElementById("timeleft").style.display = "none"
+            document.getElementById("startime").style.display = "none"
         }
 
         if (status == "choose") {
@@ -153,6 +158,8 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
           document.getElementById("projects").style.display = "none"
           document.getElementById("class").style.display = "none"
           document.getElementsByClassName("info")[0].style.marginLeft = "250px"
+          document.getElementById("timeleft").style.display = "none"
+          document.getElementById("startime").style.display = "none"
         }
     }
 
@@ -255,6 +262,40 @@ const Q = query(collection(db, "Projects"));
   
  })
     
+
+
+
+ async function Countdown() {
+  
+  let startdate = timeSnapshot.data().Start.toDate();
+  let Starttime = startdate.toLocaleDateString("de-DE") + " um " + startdate.toLocaleTimeString("de-DE")
+  
+  let Countdown = timeSnapshot.data().Start - Date.now
+  console.log(Countdown)
+  let countdowndate = Countdown.toDate();
+  let Countdowntime = countdowndate.toLocaleTimeString("de-DE")
+  
+  if (timeSnapshot.data().Start < Date.now) {
+    if (Status == "choose") {
+
+      document.getElementById("body").innerHTML = "<p id='timeleft'></p> <p id='startime'></p>"
+      document.getElementById("timeleft").style.display = "block"
+      document.getElementById("startime").style.display = "block"
+      document.getElementById("startime").innerHTML = "Eröffnung am " + Starttime;
+      document.getElementById("startime").innerHTML = Countdowntime;
+    }
+      
+  } else {
+    document.getElementById("timeleft").style.display = "none"
+    document.getElementById("startime").style.display = "none"
+    UI(Status)
+  }
+ }
+
+Countdown()
+ setInterval(() => {
+  Countdown()
+ }, 1000);
 
  
 
