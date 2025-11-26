@@ -112,7 +112,11 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
     function UI(status) {
 
       console.log(status)
-      Status = status;
+      if (status != "clear") {
+         Status = status;
+      }
+     
+
         if (status == "logedout") {
             document.getElementById("name").style.display = "block"
             document.getElementById("surname").style.display = "block"
@@ -158,6 +162,21 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
           document.getElementById("projects").style.display = "none"
           document.getElementById("class").style.display = "none"
           document.getElementsByClassName("info")[0].style.marginLeft = "250px"
+          document.getElementById("timeleft").style.display = "none"
+          document.getElementById("startime").style.display = "none"
+        }
+
+        if (status=="clear") {
+           document.getElementById("name").style.display = "none"
+          document.getElementById("surname").style.display = "none"
+          document.getElementById("go").style.display = "none"
+          document.getElementsByClassName("info")[0].innerHTML = "";
+          document.getElementsByClassName("info")[1].style.display = "none"
+          document.getElementsByClassName("info")[2].style.display = "none"
+          document.getElementsByClassName("zeileninfo")[0].style.display = "none"
+          document.getElementsByClassName("zeileninfo")[1].style.display = "none"
+          document.getElementById("projects").style.display = "none"
+          document.getElementById("class").style.display = "none"
           document.getElementById("timeleft").style.display = "none"
           document.getElementById("startime").style.display = "none"
         }
@@ -262,33 +281,48 @@ const Q = query(collection(db, "Projects"));
   
  })
     
+console.log(timeSnapshot.data().Start)
 
 
+ let tried = false;
 
  async function Countdown() {
   
   let startdate = timeSnapshot.data().Start.toDate();
   let Starttime = startdate.toLocaleDateString("de-DE") + " um " + startdate.toLocaleTimeString("de-DE")
   
-  let Countdown = timeSnapshot.data().Start - Date.now
-  console.log(Countdown)
-  let countdowndate = Countdown.toDate();
-  let Countdowntime = countdowndate.toLocaleTimeString("de-DE")
+  let msLeft = timeSnapshot.data().Start.toDate().getTime() - Date.now();
+
+    const days = Math.floor(msLeft / (24 * 3600 * 1000));
+    let rem = msLeft % (24 * 3600 * 1000);
+    const hours = Math.floor(rem / (3600 * 1000));
+    rem = rem % (3600 * 1000);
+    const minutes = Math.floor(rem / (60 * 1000));
+    const seconds = Math.floor((rem % (60 * 1000)) / 1000);
+
+    const pad = (n) => String(n).padStart(2, "0");
+    let Countdowntime = `${days}:${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
   
-  if (timeSnapshot.data().Start < Date.now) {
+  
+  if (msLeft > 0) {
     if (Status == "choose") {
 
-      document.getElementById("body").innerHTML = "<p id='timeleft'></p> <p id='startime'></p>"
+      UI("clear")
       document.getElementById("timeleft").style.display = "block"
       document.getElementById("startime").style.display = "block"
       document.getElementById("startime").innerHTML = "Eröffnung am " + Starttime;
-      document.getElementById("startime").innerHTML = Countdowntime;
+      document.getElementById("timeleft").innerHTML = Countdowntime;
     }
       
   } else {
-    document.getElementById("timeleft").style.display = "none"
+    
+    if (!tried) {
+      document.getElementById("timeleft").style.display = "none"
     document.getElementById("startime").style.display = "none"
     UI(Status)
+    tried = true
+    }
+    
   }
  }
 
