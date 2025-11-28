@@ -242,7 +242,7 @@ if(Projekt && Projekt != ""){
       p.style.backgroundColor = "rgba(0, 0, 0, 0)"
     }
 
-    document.getElementById(Id).style.backgroundColor = "rgb(216, 58, 58)"
+    document.getElementById(Id).style.backgroundColor = "#7facab"
 }})
 
 async function reset() {
@@ -332,6 +332,7 @@ Countdown()
  }, 1000);
 
  
+
 
 
 
