@@ -64,7 +64,7 @@ html{
 
 button{
     background-color: #7fbcab;
-    color: white;
+    color: black;
     margin-top: 25px;
     margin-left: 1090px;
     width: 90px;
@@ -121,6 +121,7 @@ select{
     border-radius: 20px;
 
 }
+
 
 
 
