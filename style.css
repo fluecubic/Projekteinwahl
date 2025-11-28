@@ -99,9 +99,9 @@ input{
 }
 
 h1, .h1{
-    margin-left: 520px;
+    margin-left: 500px;
     font-size: 30px;
-    width: 300px;
+    width: 600px;
     height: 40px;
 }
 
@@ -121,6 +121,7 @@ select{
     border-radius: 20px;
 
 }
+
 
 
 
