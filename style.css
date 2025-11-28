@@ -63,7 +63,7 @@ html{
 }
 
 button{
-    background-color: rgb(216, 58, 58);
+    background-color: #7fbcab;
     color: white;
     margin-top: 25px;
     margin-left: 1090px;
@@ -121,6 +121,7 @@ select{
     border-radius: 20px;
 
 }
+
 
 
 
