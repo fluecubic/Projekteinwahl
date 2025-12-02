@@ -5,7 +5,7 @@ info{
 #body{
     width: 1200px;
     height: 700px;
-    background-color: rgb(50, 130, 205);
+    background-color: #c5d6a1;
     border-radius: 20px;
     margin-left: 340px;
     margin-top: 90px;
@@ -29,8 +29,8 @@ html{
 
 
 button{
-    background-color: rgb(216, 58, 58);
-    color: white;
+    background-color: #7fbcab;
+    color: black;
     width: 90px;
     height: 45px;
     border-radius: 10px;

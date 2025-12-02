@@ -1,7 +1,7 @@
 #body{
     width: 1200px;
     height: 700px;
-    background-color: rgb(50, 130, 205);
+    background-color: #c5d6a1;
     border-radius: 20px;
     margin-left: 340px;
     margin-top: 90px;
@@ -10,11 +10,7 @@
 }
 
 
-#Tables{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-}
+
 
 @font-face {
     font-family: "font";
@@ -32,7 +28,7 @@ html{
 
 
 a{
-    background-color: rgb(216, 58, 58) ;
+    background-color: #7fbcab;
     margin-top: 25px;
     margin-left: 1090px;
     border-radius: 10px;
@@ -40,7 +36,7 @@ a{
     position: block;
     padding: 10px;
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 

@@ -71,7 +71,7 @@ button{
     height: 45px;
     border-radius: 10px;
     font-size: 15px;
-    position: block;
+    display: block;
     z-index: 0;
 }
 

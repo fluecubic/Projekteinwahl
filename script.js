@@ -35,9 +35,10 @@ const timeSnapshot = await getDoc(doc(db, connectstring, connectstring))
  async function login() {
      Vorname = document.getElementById("name").value;
      Nachname = document.getElementById("surname").value;
-     Name = Vorname + " " + Nachname;
      Klasse  = document.getElementById("class").value;
-
+     Vorname = Vorname.charAt(0).toUpperCase() + Vorname.slice(1, 99)
+     Nachname = Nachname.charAt(0).toUpperCase() + Nachname.slice(1, 99)
+     Name = Vorname + " " + Nachname;
 
      localStorage.setItem("Name", Name)
      localStorage.setItem("Vorname", Vorname)
@@ -51,7 +52,8 @@ const timeSnapshot = await getDoc(doc(db, connectstring, connectstring))
       }  
     }
 
-    
+    if (document.getElementById("class").value != "") {
+
     if (!found) {
       const AdddocRef = await addDoc(collection(db, "User"), {
      Name: Name,
@@ -64,6 +66,8 @@ const timeSnapshot = await getDoc(doc(db, connectstring, connectstring))
      
  
      UI("choose")
+
+  } 
 }   
 
 
@@ -152,9 +156,9 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
         if (status == "done") {
           document.getElementById("name").style.display = "none"
           document.getElementById("surname").style.display = "none"
-          document.getElementById("go").style.display = "block"
+          document.getElementById("go").style.display = "none" //"block"
           document.getElementById("go").innerHTML = "Ändern"
-          document.getElementsByClassName("info")[0].innerHTML = "Hallo, " + Name + ". Du bist im Projekt " + Projekt;
+          document.getElementsByClassName("info")[0].innerHTML = "Hallo, " + Name + ". Du bist im Projekt " + Projekt + ". Damit bist du fertig.";
           document.getElementsByClassName("info")[1].style.display = "none"
           document.getElementsByClassName("info")[2].style.display = "none"
           document.getElementsByClassName("zeileninfo")[0].style.display = "none"
