@@ -124,13 +124,14 @@ select{
 
 #startime{
     font-size:20px;
-    margin-left:500px;
+    margin-left:450px;
 }
 
 #timeleft{
-    font-size:30px;
+    font-size:40px;
     margin-left:500px;
 }
+
 
 
 
