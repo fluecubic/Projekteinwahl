@@ -122,6 +122,15 @@ select{
 
 }
 
+#startime{
+    fontsize:20px;
+    margin-left:500px;
+}
+
+#timeleft{
+    fontsize:30px;
+    margin-left:400px;
+}
 
 
 
