@@ -30,7 +30,7 @@ function ui(status) {
     document.getElementById("Class").style.display = "block"
     document.getElementById("Go").style.display = "block"
     document.getElementsByTagName("info")[0].innerHTML = ""
-    document.getElementById("Users").style.display = "block"
+    document.getElementById("Projekt").style.display = "block"
     document.getElementById("Name").style.display = "block"
     document.getElementById("add").style.display = "block"
     document.getElementsByTagName("hr")[0].style.display = "block"
@@ -43,7 +43,7 @@ function ui(status) {
     document.getElementById("MaxUsers").style.display = "none"
     document.getElementById("Class").style.display = "none"
     document.getElementById("Go").style.display = "none"
-    document.getElementById("Users").style.display = "none"
+    document.getElementById("Projekt").style.display = "none"
     document.getElementById("Name").style.display = "none"
     document.getElementById("add").style.display = "none"
     document.getElementsByTagName("hr")[0].style.display = "none"
@@ -68,6 +68,7 @@ if (localStorage.getItem("Key") == adminSnapshot.data().Key) {
 
 document.getElementById("go").addEventListener("click", login)
 document.getElementById("Go").addEventListener("click", addProject)
+document.getElementById("add").addEventListener("click", addUser)
 
 async function addProject() {
   if (localStorage.getItem("Key") == adminSnapshot.data().Key){
@@ -85,9 +86,15 @@ async function addProject() {
 async function addUser() {
   if (localStorage.getItem("Key") == adminSnapshot.data().Key) {
     
-  for (const doc of userSnapshot) {
-    if (doc.data().Name == document.getElementById("Name").value) {
-      await updateDoc(doc(db, "User", doc.id), { Projekt: document.getElementById("Users").value})
+  for (const userDoc of userSnapshot.docs) {
+    if (userDoc.data().Name == document.getElementById("Name").value) {
+      await updateDoc(doc(db, "User", userDoc.id), { Projekt: document.getElementById("Projekt").value})
+    }
+  }
+
+  for (const Doc of projectSnapshot.docs) {
+    if (Doc.data().Name == document.getElementById("Projekt").value) {
+      await updateDoc(doc(db, "Projects", Doc.id), { Users: arrayUnion(document.getElementById("Name").value) })
     }
   }
     
@@ -96,5 +103,5 @@ async function addUser() {
 }
 
 projectSnapshot.forEach(doc => {
-  document.getElementById("Users").innerHTML += "<option value='" + doc.data().Name + "'>" + doc.data().Name + "</option>"
+  document.getElementById("Projekt").innerHTML += "<option value='" + doc.data().Name + "'>" + doc.data().Name + "</option>"
 });
