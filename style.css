@@ -36,7 +36,7 @@ html{
 }
 
 #persons{
-    margin-left: 1000px;
+    margin-left: 500px;
 }
 
 #projects{
@@ -46,13 +46,12 @@ html{
 
 .persons{
     position: absolute;
-    left: 300px; 
-    top: 0;     
-    margin-left: 0; 
+    margin-left: 300px; 
 }
 
 .projectName{
   margin-left: 100px;  
+  width: 500px;
 }
 
 .project{
