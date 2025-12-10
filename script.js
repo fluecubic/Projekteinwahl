@@ -301,10 +301,10 @@ console.log(timeSnapshot.data().Start)
 
  async function Countdown() {
   
-  let startdate = timeSnapshot.data().Start.toDate();
+  let startdate = Date("Mon, 15 Dec 2025 02:22:22 +0000");
   let Starttime = startdate.toLocaleDateString("de-DE") + " um " + startdate.toLocaleTimeString("de-DE")
   
-  let msLeft = timeSnapshot.data().Start.toDate().getTime() - Date.now();
+  let msLeft = startdate.getTime() - Date.now();
 
     const days = Math.floor(msLeft / (24 * 3600 * 1000));
     let rem = msLeft % (24 * 3600 * 1000);
