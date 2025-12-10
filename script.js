@@ -190,12 +190,21 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
    async function loadProjects() {
      const q = query(collection(db, "Projects")); 
      const querySnapshot = await getDocs(q);
+     let Stufe;
      console.log("loading...")
+
+     if(Klasse.charAt(0) == "1") {
+       Stufe = Klasse.charAt(0) + Klasse.charAt(1)
+     } else {
+       Stufe = Klasse.charAt(0)
+     }
+
+     console.log("Stufe: "+ Stufe)
 
      let html = "";
     for (const doc of querySnapshot.docs) {
       if (doc.data().Users.length < doc.data().MaxUsers ) {
-      if (doc.data().minClass <= Number(Klasse.charAt(0)) || Klasse.charAt(0) == "1") { 
+      if (doc.data().Clases.includes(Stufe) { 
 
         html += "<div class='project' id='" + doc.data().Name +"'><p class='projectName'>" + doc.data().Name + "</p><p class='persons'>" + doc.data().Users.length + "/" + doc.data().MaxUsers + "</p></div>"
          }}
@@ -336,6 +345,7 @@ Countdown()
  }, 1000);
 
  
+
 
 
 
