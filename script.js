@@ -302,6 +302,7 @@ console.log(timeSnapshot.data().Start)
  async function Countdown() {
   
   let startdate = Date("Mon, 15 Dec 2025 02:22:22 +0000");
+  console.log(startdate)
   let Starttime = startdate.toLocaleDateString("de-DE") + " um " + startdate.toLocaleTimeString("de-DE")
   
   let msLeft = startdate.getTime() - Date.now();
