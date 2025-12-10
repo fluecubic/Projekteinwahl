@@ -34,6 +34,14 @@ function ui(status) {
     document.getElementById("Name").style.display = "block"
     document.getElementById("add").style.display = "block"
     document.getElementsByTagName("hr")[0].style.display = "block"
+    document.getElementById("Class5").style.display = "block"
+    document.getElementById("Class6").style.display = "block"
+    document.getElementById("Class7").style.display = "block"
+    document.getElementById("Class8").style.display = "block"
+    document.getElementById("Class9").style.display = "block"
+    document.getElementById("Class10").style.display = "block"
+    document.getElementById("Class11").style.display = "block"
+    document.getElementById("Class12").style.display = "block"
   }
 
   if (status == "logedout") {
@@ -47,6 +55,14 @@ function ui(status) {
     document.getElementById("Name").style.display = "none"
     document.getElementById("add").style.display = "none"
     document.getElementsByTagName("hr")[0].style.display = "none"
+    document.getElementById("Class5").style.display = "none"
+    document.getElementById("Class6").style.display = "none"
+    document.getElementById("Class7").style.display = "none"
+    document.getElementById("Class8").style.display = "none"
+    document.getElementById("Class9").style.display = "none"
+    document.getElementById("Class10").style.display = "none"
+    document.getElementById("Class11").style.display = "none"
+    document.getElementById("Class12").style.display = "none"
   }
 }
 
@@ -105,3 +121,4 @@ async function addUser() {
 projectSnapshot.forEach(doc => {
   document.getElementById("Projekt").innerHTML += "<option value='" + doc.data().Name + "'>" + doc.data().Name + "</option>"
 });
+
