@@ -312,10 +312,10 @@ console.log(timeSnapshot.data().Start)
     if (Status == "choose") {
 
       UI("clear")
-      document.getElementById("timeleft").style.display = "block"
+      //document.getElementById("timeleft").style.display = "block"
       document.getElementById("startime").style.display = "block"
-      document.getElementById("startime").innerHTML = "Eröffnung am " + Starttime;
-      document.getElementById("timeleft").innerHTML = Countdowntime;
+      document.getElementById("startime").innerHTML = "Du kannst dein Projekt ab Montag wählen."   //"Eröffnung am " + Starttime;
+      //document.getElementById("timeleft").innerHTML = Countdowntime;
     }
       
   } else {
@@ -336,6 +336,7 @@ Countdown()
  }, 1000);
 
  
+
 
 
 
