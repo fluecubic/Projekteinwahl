@@ -204,7 +204,7 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
      let html = "";
     for (const doc of querySnapshot.docs) {
       if (doc.data().Users.length < doc.data().MaxUsers ) {
-      if (doc.data().Clases.includes(Stufe) { 
+      if (doc.data().Clases.includes(Stufe)) { 
 
         html += "<div class='project' id='" + doc.data().Name +"'><p class='projectName'>" + doc.data().Name + "</p><p class='persons'>" + doc.data().Users.length + "/" + doc.data().MaxUsers + "</p></div>"
          }}
