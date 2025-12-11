@@ -1,11 +1,10 @@
 #body{
-    width: 1170px;
-    height: 670px;
+    width: 94.5vw;
+    height: 92.5vh;
     background-color: #c5d6a1;
-    border-radius: 20px;
-    margin-left: 20px;
-    margin-top: 20px;
-    padding:20px ;
+    border-radius: 0px;
+    margin: 0px;
+    padding: 20px ;
     overflow-y: scroll;
 }
 
@@ -46,26 +45,26 @@ html{
 
 .persons{
     position: absolute;
-    margin-left: 300px; 
+    margin-left: 665px; 
 }
 
 .projectName{
   margin-left: 100px;  
-  width: 1000px;
+  width: 50px;
 }
 
 .project{
    display: flex;
    flex-direction: row; 
    position: relative;
-    width: 2000px; 
+    width: 1000px; 
 }
 
 button{
     background-color: #7fbcab;
     color: black;
     margin-top: 25px;
-    margin-left: 1090px;
+    margin-left: 800px;
     width: 90px;
     height: 45px;
     border-radius: 10px;
@@ -98,7 +97,7 @@ input{
 }
 
 h1, .h1{
-    margin-left: 500px;
+    margin-left: 25px;
     font-size: 30px;
     width: 600px;
     height: 40px;
@@ -131,6 +130,19 @@ select{
     margin-left:500px;
 }
 
+
+
+img{
+  width: 225px;  
+  height: 73.2px;
+  margin-bottom: 25px;
+}
+
+
+.flex{
+    display: flex;
+    flex-direction: row;
+}
 
 
 

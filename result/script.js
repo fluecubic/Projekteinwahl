@@ -29,7 +29,7 @@ fileString += "\n\n\nBezeichnung;Teilnehmer;Anzahl\n"
 
 projectSnapshot.forEach(element => {
    document.getElementById("Projects").innerHTML += "<tr><td>" + element.data().Name + "</td><td>" + element.data().Users + "</td><td>" +  element.data().Users.length + "/" + element.data().MaxUsers + "</td></tr>"
-   fileString += element.data().Name + ";" + element.data().Users + ";" +  element.data().Users.length + "/" + element.data().MaxUsers + "\n"
+   fileString += element.data().Name + ";" + element.data().Users + ";" +  element.data().Users.length + " von " + element.data().MaxUsers + "\n"
 
 });
 

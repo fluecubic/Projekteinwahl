@@ -49,6 +49,12 @@ const timeSnapshot = await getDoc(doc(db, connectstring, connectstring))
       if (doc.data().Name == Name) {
        found = true
        Klasse = doc.data().Klasse
+       if (doc.data().Projekt && doc.data().Projekt != "") {
+            Projekt = doc.data().Projekt
+            UI("done")
+        } else {
+            UI("choose")
+        }
       }  
     }
 
@@ -62,10 +68,11 @@ const timeSnapshot = await getDoc(doc(db, connectstring, connectstring))
      Klasse: Klasse,
      Projekt: ""
      })
+     UI("choose")
     }
      
  
-     UI("choose")
+     
 
   } 
 }   
@@ -149,7 +156,7 @@ if (!localStorage.getItem("Name") || localStorage.getItem("Name") == "") {
             document.getElementsByClassName("zeileninfo")[0].style.display = "block"
             document.getElementsByClassName("zeileninfo")[1].style.display = "block"
             document.getElementById("class").style.display = "none"
-            document.getElementsByClassName("info")[0].style.marginLeft = "300px"
+            //document.getElementsByClassName("info")[0].style.marginLeft = "300px"
             loadProjects()
         }
 
@@ -293,16 +300,13 @@ const Q = query(collection(db, "Projects"));
   }
   
  })
-    
-console.log(timeSnapshot.data().Start)
 
 
  let tried = false;
 
  async function Countdown() {
   
-  let startdate = Date("Mon, 15 Dec 2025 02:22:22 +0000");
-  console.log(startdate)
+  let startdate = timeSnapshot.data().Start.toDate();
   let Starttime = startdate.toLocaleDateString("de-DE") + " um " + startdate.toLocaleTimeString("de-DE")
   
   let msLeft = startdate.getTime() - Date.now();

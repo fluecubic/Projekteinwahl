@@ -89,7 +89,7 @@ async function addProject() {
     const AdddocRef = await addDoc(collection(db, "Projects"), {
        Name: document.getElementById("Projectname").value,
        MaxUsers: Number(document.getElementById("MaxUsers").value),
-       minClass: Number(document.getElementById("Class").value),
+       Clases: Klassenauswahl(),
        Users: []
        })
   }
@@ -120,3 +120,35 @@ projectSnapshot.forEach(doc => {
   document.getElementById("Projekt").innerHTML += "<option value='" + doc.data().Name + "'>" + doc.data().Name + "</option>"
 });
 
+
+function Klassenauswahl(){
+
+let Klassen = [];
+if (document.getElementById("Class5").checked) {
+  Klassen[Klassen.length] = "5"
+}
+if (document.getElementById("Class6").checked) {
+  Klassen[Klassen.length] = "6"
+}
+if (document.getElementById("Class7").checked) {
+  Klassen[Klassen.length] = "7"
+}
+if (document.getElementById("Class8").checked) {
+  Klassen[Klassen.length] = "8"
+}
+if (document.getElementById("Class9").checked) {
+  Klassen[Klassen.length] = "9"
+}
+if (document.getElementById("Class10").checked) {
+  Klassen[Klassen.length] = "10"
+}
+if (document.getElementById("Class11").checked) {
+  Klassen[Klassen.length] = "11"
+}
+if (document.getElementById("Class12").checked) {
+  Klassen[Klassen.length] = "12"
+}
+
+return Klassen;
+
+}
