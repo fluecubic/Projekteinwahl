@@ -351,9 +351,11 @@ Countdown()
   Countdown()
  }, 1000);
 
-let RausAudio = new Audio("./assets/ichmussraus.mp3")
+let RausAudio = new Audio("./assets/ich-muss-raus.mp3")
+console.log(RausAudio)
 
  
+
 
 
 
