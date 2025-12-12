@@ -351,7 +351,10 @@ Countdown()
   Countdown()
  }, 1000);
 
+let RausAudio = new Audio("./assets/ichmussraus.mp3")
+
  
+
 
 
 
