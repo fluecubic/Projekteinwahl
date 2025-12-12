@@ -54,7 +54,6 @@ html{
 
 .projectName{
   margin-left: 100px;  
-  width: 50px;
 }
 
 .project{
@@ -147,6 +146,7 @@ img{
     display: flex;
     flex-direction: row;
 }
+
 
 
 
