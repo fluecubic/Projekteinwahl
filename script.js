@@ -32,6 +32,8 @@ const q = query(collection(db, "User"));
 const querySnapshot = await getDocs(q);
 const timeSnapshot = await getDoc(doc(db, connectstring, connectstring))
 
+UI("logedout")
+
  async function login() {
      Vorname = document.getElementById("name").value;
      Nachname = document.getElementById("surname").value;
@@ -350,6 +352,7 @@ Countdown()
  }, 1000);
 
  
+
 
 
 
