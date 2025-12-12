@@ -8,6 +8,10 @@
     overflow-y: scroll;
 }
 
+body{
+    padding:0px
+}
+
 
 @font-face {
     font-family: "font";
@@ -143,6 +147,7 @@ img{
     display: flex;
     flex-direction: row;
 }
+
 
 
 
