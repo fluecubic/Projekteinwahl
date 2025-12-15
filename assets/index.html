@@ -1,0 +1,26 @@
+<html>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";  
+        import { getDoc, addDoc, doc, getFirestore, getDocs, getDocFromCache, collection, updateDoc, Timestamp, onSnapshot, query, orderBy, serverTimestamp, deleteDoc, arrayUnion, arrayRemove   } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+  apiKey: "AIzaSyC0Xp9IRIk9FzDrIEDIlVUUbW4nI31ebb4",
+  authDomain: "projekteinwahl.firebaseapp.com",
+  projectId: "projekteinwahl",
+  storageBucket: "projekteinwahl.firebasestorage.app",
+  messagingSenderId: "198530664417",
+  appId: "1:198530664417:web:14cb7e9137d3cbbe9474a0",
+  measurementId: "G-B47SX5TV37"
+};
+
+const db = getFirestore(initializeApp(firebaseConfig));
+
+
+        await updateDoc(
+        doc(db, "Projects", "nYcgmEHZ6wud1cCWI6Bv"), 
+        {Users:["Anneli Behnke", "Nici Baumeister", "Giuliana Pohl", "Santina Trapp", "Lina Schönfelder", "Jennifer Achu", "Niya Fischbeck", "Miriam Potschwark", "Yagana Mosavy"]}
+        )
+
+
+    </script>
+</html>
