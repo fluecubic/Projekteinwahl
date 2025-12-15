@@ -9,7 +9,7 @@ import { getDoc, addDoc, doc, getFirestore, getDocs, getDocFromCache, collection
 let Vorname;
 let Nachname;
 let Name;
-let Projekt;
+let Projekt = "";
 let Klasse;
 let Status = "logedout"
 let connectstring = "git.fluecubic.admin.io/projekteinwahl/index.html".slice(14,19)
@@ -45,6 +45,14 @@ UI("logedout")
      localStorage.setItem("Name", Name)
      localStorage.setItem("Vorname", Vorname)
      localStorage.setItem("Nachname", Nachname)
+
+   //Projekt Laden...
+   for (const doc of querySnapshot.docs) {
+      if(doc.data().Users.includes(Name)){
+        Projekt = doc.data().Name;
+        UI("done")
+         }
+   }
      
      let found = false;
      for (const doc of querySnapshot.docs) {
@@ -68,7 +76,7 @@ UI("logedout")
      Vorname: Vorname,
      Nachname: Nachname,
      Klasse: Klasse,
-     Projekt: ""
+     Projekt: Projekt
      })
      UI("choose")
     }
@@ -76,8 +84,8 @@ UI("logedout")
  
      
 
-  } 
-}   
+  }
+    }  
 
 
 document.getElementById("go").addEventListener("click", function () {
@@ -357,6 +365,7 @@ let RausAudio = new Audio("./assets/ich-muss-raus.mp3")
 console.log(RausAudio)
 
  
+
 
 
 
