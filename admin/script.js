@@ -104,7 +104,7 @@ async function addUser() {
     
   for (const userDoc of userSnapshot.docs) {
     if (userDoc.data().Name == document.getElementById("Name").value) {
-      lastProject = userDoc.id;
+      lastProject = userDoc.data().Project;
       await updateDoc(doc(db, "User", userDoc.id), { Projekt: document.getElementById("Projekt").value})
     }
   }
@@ -113,8 +113,11 @@ async function addUser() {
     if (Doc.data().Name == document.getElementById("Projekt").value) {
       await updateDoc(doc(db, "Projects", Doc.id), { Users: arrayUnion(document.getElementById("Name").value) })
     }
-    if(Doc.id == lastProject){
-    await updateDoc(doc(db, "Projects", Doc.id), { Users: Doc.data().Users.splice(Doc.data().Users.indexOf(document.getElementById("Name").value), 1) })
+    if(Doc.data().Name == lastProject){
+    await updateDoc(doc(db, "Projects", Doc.id), {
+  Users: arrayRemove(document.getElementById("Name").value)
+});
+
     }
   }
     
@@ -172,3 +175,4 @@ function Delete(){
 }
 
 Delete()
+
