@@ -181,6 +181,9 @@ async function DeleteVotes(){
   }
 }
 
+console.log("v.2")
+
+
 
 
 
