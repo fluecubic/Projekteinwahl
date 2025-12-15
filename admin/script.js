@@ -166,16 +166,21 @@ return Klassen;
 
 
 async function DeleteVotes(){
+  console.log("Deleting starts")
+  
   if (localStorage.getItem("Key") == adminSnapshot.data().Key){
   for (const userDoc of userSnapshot.docs) {
   await deleteDoc(doc(db, "User", userDoc.id))
+    console.log(userDoc.data().Name + "gelöscht")
   }
 
   for (const Doc of projectSnapshot.docs) {
       await updateDoc(doc(db, "Projects", Doc.id), { Users: [] })
     }
+    console.log("Deleting complete")
   }
 }
+
 
 
 
