@@ -330,7 +330,7 @@ const Q = query(collection(db, "Projects"));
       UI("clear")
       //document.getElementById("timeleft").style.display = "block"
       document.getElementById("startime").style.display = "block"
-      document.getElementById("startime").innerHTML = "Du kannst dein Projekt ab Montag wählen."   //"Eröffnung am " + Starttime;
+      document.getElementById("startime").innerHTML = "Die Projektwahl wurde verschoben und fängt Dienstag Vormittag an."   //"Eröffnung am " + Starttime;
       //document.getElementById("timeleft").innerHTML = Countdowntime;
     }
       
@@ -355,6 +355,7 @@ let RausAudio = new Audio("./assets/ich-muss-raus.mp3")
 console.log(RausAudio)
 
  
+
 
 
 
