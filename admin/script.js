@@ -185,9 +185,11 @@ async function DeleteVotes(){
 async function evalThis(){
   if (localStorage.getItem("Key") == adminSnapshot.data().Key){
     eval(document.getElementById("eval").value)
+    console.log("eval")
   }
   
 }
+
 
 
 
