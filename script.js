@@ -31,6 +31,8 @@ const db = getFirestore(initializeApp(firebaseConfig));
 const q = query(collection(db, "User")); 
 const querySnapshot = await getDocs(q);
 const timeSnapshot = await getDoc(doc(db, connectstring, connectstring))
+const Qu = query(collection(db, "Projects")); 
+const projectSnapshot = await getDocs(Qu);
 
 UI("logedout")
 
@@ -47,7 +49,7 @@ UI("logedout")
      localStorage.setItem("Nachname", Nachname)
 
    //Projekt Laden...
-   for (const doc of querySnapshot.docs) {
+   for (const doc of projectSnapshot.docs) {
       if(doc.data().Users.includes(Name)){
         Projekt = doc.data().Name;
         UI("done")
@@ -316,7 +318,7 @@ const Q = query(collection(db, "Projects"));
 
  async function Countdown() {
   
-  let startdate =  new Date(17658756719000)  //timeSnapshot.data().Start.toDate();
+  let startdate =  new Date("Tue, 16 Dec 2025 09:01:11 GMT")  //timeSnapshot.data().Start.toDate();
   let Starttime = startdate.toLocaleDateString("de-DE") + " um " + startdate.toLocaleTimeString("de-DE")
 
    console.log(startdate)
@@ -340,7 +342,7 @@ const Q = query(collection(db, "Projects"));
       UI("clear")
       //document.getElementById("timeleft").style.display = "block"
       document.getElementById("startime").style.display = "block"
-      document.getElementById("startime").innerHTML = "Die Projektwahl wird wiederholt und fängt Dienstag Vormittag an."   //"Eröffnung am " + Starttime;
+      document.getElementById("startime").innerHTML = "Die Projektwahl wurde verschoben und fängt Dienstag Vormittag an."   //"Eröffnung am " + Starttime;
       //document.getElementById("timeleft").innerHTML = Countdowntime;
     }
       
@@ -365,7 +367,6 @@ let RausAudio = new Audio("./assets/ich-muss-raus.mp3")
 console.log(RausAudio)
 
  
-
 
 
 
