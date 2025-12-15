@@ -308,8 +308,10 @@ const Q = query(collection(db, "Projects"));
 
  async function Countdown() {
   
-  let startdate = timeSnapshot.data().Start.toDate();
+  let startdate =  new Date(1765875671)  //timeSnapshot.data().Start.toDate();
   let Starttime = startdate.toLocaleDateString("de-DE") + " um " + startdate.toLocaleTimeString("de-DE")
+
+   console.log("startdate")
   
   let msLeft = startdate.getTime() - Date.now();
 
@@ -355,6 +357,7 @@ let RausAudio = new Audio("./assets/ich-muss-raus.mp3")
 console.log(RausAudio)
 
  
+
 
 
 
