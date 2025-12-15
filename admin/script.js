@@ -18,6 +18,8 @@ const userSnapshot = await getDocs(query(collection(db, "User"), orderBy("Klasse
 const projectSnapshot = await getDocs(query(collection(db, "Projects"), orderBy("Name", "desc")));
 const adminSnapshot = await getDoc(doc(db, "admin", "admin"))
 
+let lastProject = "";
+
 
 
 function ui(status) {
@@ -102,6 +104,7 @@ async function addUser() {
     
   for (const userDoc of userSnapshot.docs) {
     if (userDoc.data().Name == document.getElementById("Name").value) {
+      lastProject = userDoc.id;
       await updateDoc(doc(db, "User", userDoc.id), { Projekt: document.getElementById("Projekt").value})
     }
   }
@@ -110,7 +113,11 @@ async function addUser() {
     if (Doc.data().Name == document.getElementById("Projekt").value) {
       await updateDoc(doc(db, "Projects", Doc.id), { Users: arrayUnion(document.getElementById("Name").value) })
     }
+    if(Doc.id == lastProject){
+    await updateDoc(doc(db, "Projects", Doc.id), { Users: Doc.data().Users.splice(Doc.data().Users.indexOf(document.getElementById("Name").value), 1) })
+    }
   }
+    
     
  
 }
@@ -152,3 +159,16 @@ if (document.getElementById("Class12").checked) {
 return Klassen;
 
 }
+
+
+function Delete(){
+  for (const userDoc of userSnapshot.docs) {
+  await deleteDoc(doc(db, "User", userDoc.id))
+  }
+
+  for (const Doc of projectSnapshot.docs) {
+      await updateDoc(doc(db, "Projects", Doc.id), { Users: [] })
+    }
+}
+
+Delete()
