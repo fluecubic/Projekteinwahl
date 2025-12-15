@@ -85,6 +85,7 @@ if (localStorage.getItem("Key") == adminSnapshot.data().Key) {
 document.getElementById("go").addEventListener("click", login)
 document.getElementById("Go").addEventListener("click", addProject)
 document.getElementById("add").addEventListener("click", addUser)
+document.getElementById("DeleteVotes").addEventListener("click", DeleteVotes)
 
 async function addProject() {
   if (localStorage.getItem("Key") == adminSnapshot.data().Key){
@@ -164,7 +165,8 @@ return Klassen;
 }
 
 
-async function Delete(){
+async function DeleteVotes(){
+  if (localStorage.getItem("Key") == adminSnapshot.data().Key){
   for (const userDoc of userSnapshot.docs) {
   await deleteDoc(doc(db, "User", userDoc.id))
   }
@@ -172,8 +174,10 @@ async function Delete(){
   for (const Doc of projectSnapshot.docs) {
       await updateDoc(doc(db, "Projects", Doc.id), { Users: [] })
     }
+  }
 }
 
-Delete()
+
+
 
 
