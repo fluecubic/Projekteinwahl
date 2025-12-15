@@ -164,7 +164,7 @@ return Klassen;
 }
 
 
-function Delete(){
+async function Delete(){
   for (const userDoc of userSnapshot.docs) {
   await deleteDoc(doc(db, "User", userDoc.id))
   }
@@ -175,4 +175,5 @@ function Delete(){
 }
 
 Delete()
+
 
