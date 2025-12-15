@@ -18,13 +18,14 @@ const db = getFirestore(initializeApp(firebaseConfig));
 
         await updateDoc(
         doc(db, "admin", "admin"), 
-        {Start:"16. Dezember 2025 um 10:01:11 UTC+1"}
+        {Start: new Date(1765875671)}
         )
 
 
     </script>
 
 </html>
+
 
 
 
