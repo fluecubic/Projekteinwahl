@@ -50,13 +50,7 @@ UI("logedout")
      localStorage.setItem("Vorname", Vorname)
      localStorage.setItem("Nachname", Nachname)
 
-   //Projekt Laden...
-   for (const doc of projectSnapshot.docs) {
-      if(doc.data().Users.includes(Name)){
-        Projekt = doc.data().Name;
-        UI("done")
-         }
-   }
+
      
      let found = false;
      for (const doc of querySnapshot.docs) {
@@ -71,6 +65,14 @@ UI("logedout")
         }
       }  
     }
+
+      //Projekt überprüfen...
+   for (const doc of projectSnapshot.docs) {
+      if(doc.data().Users.includes(Name)){
+        Projekt = doc.data().Name;
+        UI("done")
+         }
+   }
 
     if (document.getElementById("class").value != "") {
 
@@ -369,6 +371,7 @@ let RausAudio = new Audio("./assets/ich-muss-raus.mp3")
 console.log(RausAudio)
 
  
+
 
 
 
