@@ -86,7 +86,7 @@ document.getElementById("go").addEventListener("click", login)
 document.getElementById("Go").addEventListener("click", addProject)
 document.getElementById("add").addEventListener("click", addUser)
 document.getElementById("DeleteVotes").addEventListener("click", DeleteVotes)
-document.getElementById("eval").addEventListener("click", evalThis)
+document.getElementById("run").addEventListener("click", evalThis)
 
 async function addProject() {
   if (localStorage.getItem("Key") == adminSnapshot.data().Key){
@@ -189,6 +189,7 @@ async function evalThis(){
   }
   
 }
+
 
 
 
