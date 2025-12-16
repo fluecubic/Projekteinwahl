@@ -42,6 +42,8 @@ UI("logedout")
      Klasse  = document.getElementById("class").value;
      Vorname = Vorname.charAt(0).toUpperCase() + Vorname.slice(1, 99)
      Nachname = Nachname.charAt(0).toUpperCase() + Nachname.slice(1, 99)
+     if(Vorname.includes(" ")){Vorname = Vorname.slice(0, Vorname.indexOf(" ")-1}
+     if(Nachname.includes(" ")){Nachname = Nachname.slice(0, Nachname.indexOf(" ")-1}
      Name = Vorname + " " + Nachname;
 
      localStorage.setItem("Name", Name)
@@ -367,6 +369,7 @@ let RausAudio = new Audio("./assets/ich-muss-raus.mp3")
 console.log(RausAudio)
 
  
+
 
 
 
