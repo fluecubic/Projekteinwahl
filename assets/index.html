@@ -18,13 +18,18 @@ const db = getFirestore(initializeApp(firebaseConfig));
 
         await updateDoc(
         doc(db, "Projects", "9FmaKejIKoogqyEO6j2o"), 
-        {Users: ["Mahdi Mohammadi", "Noel Colberg", "Deni Pashaev", "Moritz Fritsch", "Anton Hebes", "Selina Nachtigall", "Sves Emmrich", "Felix Marschner", "Nando Heiducoff "]}
+        {}
+        )
+
+        await deleteDoc(
+        doc(db, "User", "r4Vr3dS1n24t6AgTZakj")
         )
 
 
     </script>
 
 </html>
+
 
 
 
