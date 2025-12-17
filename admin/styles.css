@@ -12,6 +12,9 @@ info{
     overflow-y: scroll;
 }
 
+body{
+    margin:0px
+}
 
 @font-face {
     font-family: "font";

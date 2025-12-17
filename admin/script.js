@@ -35,6 +35,7 @@ function ui(status) {
     document.getElementById("Name").style.display = "block"
     document.getElementById("add").style.display = "block"
     document.getElementsByTagName("hr")[0].style.display = "block"
+    document.getElementsByTagName("hr")[1].style.display = "none"
     document.getElementById("Class5").style.display = "block"
     document.getElementById("Class6").style.display = "block"
     document.getElementById("Class7").style.display = "block"
@@ -43,6 +44,17 @@ function ui(status) {
     document.getElementById("Class10").style.display = "block"
     document.getElementById("Class11").style.display = "block"
     document.getElementById("Class12").style.display = "block"
+    document.getElementsByTagName("label")[0].style.display = "block"
+    document.getElementsByTagName("label")[1].style.display = "block"
+    document.getElementsByTagName("label")[2].style.display = "block"
+    document.getElementsByTagName("label")[3].style.display = "block"
+    document.getElementsByTagName("label")[4].style.display = "block"
+    document.getElementsByTagName("label")[5].style.display = "block"
+    document.getElementsByTagName("label")[6].style.display = "block"
+    document.getElementsByTagName("label")[7].style.display = "block"
+    document.getElementById("DeleteVotes").style.display = "block"
+    document.getElementById("eval").style.display = "block"
+    document.getElementById("run").style.display = "block"
   }
 
   if (status == "logedout") {
@@ -55,6 +67,7 @@ function ui(status) {
     document.getElementById("Name").style.display = "none"
     document.getElementById("add").style.display = "none"
     document.getElementsByTagName("hr")[0].style.display = "none"
+    document.getElementsByTagName("hr")[1].style.display = "none"
     document.getElementById("Class5").style.display = "none"
     document.getElementById("Class6").style.display = "none"
     document.getElementById("Class7").style.display = "none"
@@ -63,6 +76,17 @@ function ui(status) {
     document.getElementById("Class10").style.display = "none"
     document.getElementById("Class11").style.display = "none"
     document.getElementById("Class12").style.display = "none"
+    document.getElementsByTagName("label")[0].style.display = "none"
+    document.getElementsByTagName("label")[1].style.display = "none"
+    document.getElementsByTagName("label")[2].style.display = "none"
+    document.getElementsByTagName("label")[3].style.display = "none"
+    document.getElementsByTagName("label")[4].style.display = "none"
+    document.getElementsByTagName("label")[5].style.display = "none"
+    document.getElementsByTagName("label")[6].style.display = "none"
+    document.getElementsByTagName("label")[7].style.display = "none"
+    document.getElementById("DeleteVotes").style.display = "none"
+    document.getElementById("eval").style.display = "none"
+    document.getElementById("run").style.display = "none"
   }
 }
 
@@ -185,7 +209,7 @@ async function DeleteVotes(){
 async function evalThis(){
   if (localStorage.getItem("Key") == adminSnapshot.data().Key){
     eval(document.getElementById("eval").value)
-    console.log(document.getElementById("eval").value)
+    console.log("eval: " + document.getElementById("eval").value)
   }
   
 }

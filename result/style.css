@@ -15,6 +15,9 @@
     font-family: "font";
     src: url("https://fonts.gstatic.com/s/telex/v18/ieVw2Y1fKWmIO-fUDVs.woff2");
 }
+body{
+    margin:0px
+}
 
 
 html{
