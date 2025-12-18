@@ -17,18 +17,33 @@ const db = getFirestore(initializeApp(firebaseConfig));
 
 
         await updateDoc(
-        doc(db, "Projects", "9FmaKejIKoogqyEO6j2o"), 
-        {Project: "keines"}
+        doc(db, "Projects", "3GYU9B9gO7OisJFcO6VW"), 
+        {Users: arrayRemove("Lasse Döhrer", "Helena Joswich", "Helene Teubel")}
         )
-
-        await deleteDoc(
-        doc(db, "User", "")
+        await updateDoc(
+        doc(db, "Projects", "lPmTczejFzLLoa75DQP6"), 
+        {Users: arrayRemove("Mathis Jaikow", "Louis Nobs")}
         )
+        await updateDoc(
+        doc(db, "User", "HU1ofH0XXzgag95knA9y"), 
+        {Projekt: ""}
+        )
+        await updateDoc(
+        doc(db, "Projects", "pSAriMCGGQD8gg6icH26"), 
+        {Users: arrayRemove("Lucas Deni ")}
+        )
+        await updateDoc(
+        doc(db, "Projects", "J4TTUISmNugglGtlmVtf"), 
+        {Users: arrayRemove("Felix Werner ")}
+        )
+        
+        
 
 
     </script>
 
 </html>
+
 
 
 
