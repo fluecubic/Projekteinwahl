@@ -19,7 +19,7 @@ const db = getFirestore(initializeApp(firebaseConfig));
         
         await updateDoc(
         doc(db, "Projects", "J4TTUISmNugglGtlmVtf"), 
-        {Users: arrayRemove("Felix Werner ")}
+        {Users: ["Sascha Tappert", "Jonas Heimann", "Emil Engel", "Konstantin Selzer", "Yehor Dodenko", "Maximilian Schmidt", "Chagan Choban", "Constantin Andrei", "Linus Kandeler", "Albert Kandeler", "Falko Otte", "Jonas Heimann", "Edgar Hennig", "Bruno Krause"]}
         )
         
         
@@ -28,6 +28,7 @@ const db = getFirestore(initializeApp(firebaseConfig));
     </script>
 
 </html>
+
 
 
 
