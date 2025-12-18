@@ -130,7 +130,7 @@ async function addUser() {
     
   for (const userDoc of userSnapshot.docs) {
     if (userDoc.data().Name == document.getElementById("Name").value) {
-      lastProject = userDoc.data().Project;
+      lastProject = userDoc.data().Projekt;
       await updateDoc(doc(db, "User", userDoc.id), { Projekt: document.getElementById("Projekt").value})
     }
   }
@@ -213,6 +213,7 @@ async function evalThis(){
   }
   
 }
+
 
 
 
