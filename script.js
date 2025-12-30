@@ -322,7 +322,7 @@ const Q = query(collection(db, "Projects"));
 
  async function Countdown() {
   
-  let startdate =  new Date("Tue, 16 Dec 2025 09:01:11 GMT")  //timeSnapshot.data().Start.toDate();
+  let startdate =  new Date("Tue, 15 Dec 2026 09:00:00 GMT")  //timeSnapshot.data().Start.toDate();
   let Starttime = startdate.toLocaleDateString("de-DE") + " um " + startdate.toLocaleTimeString("de-DE")
 
    console.log(startdate)
@@ -346,7 +346,7 @@ const Q = query(collection(db, "Projects"));
       UI("clear")
       //document.getElementById("timeleft").style.display = "block"
       document.getElementById("startime").style.display = "block"
-      document.getElementById("startime").innerHTML = "Die Projektwahl wurde verschoben und fängt Dienstag Vormittag an."   //"Eröffnung am " + Starttime;
+      document.getElementById("startime").innerHTML = "Die Projektwahl ist vorbei."   //"Eröffnung am " + Starttime;
       //document.getElementById("timeleft").innerHTML = Countdowntime;
     }
       
@@ -371,6 +371,7 @@ let RausAudio = new Audio("./assets/ich-muss-raus.mp3")
 console.log(RausAudio)
 
  
+
 
 
 
